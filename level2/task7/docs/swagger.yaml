@@ -1,0 +1,223 @@
+basePath: /
+definitions:
+  models.Comment:
+    properties:
+      body:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      postId:
+        type: integer
+    type: object
+  models.Post:
+    properties:
+      body:
+        type: string
+      id:
+        type: integer
+      title:
+        type: string
+      userId:
+        type: integer
+    type: object
+host: localhost:1323
+info:
+  contact:
+    email: l.weltburger.l@gmail.com
+    name: Weltburger
+    url: https://github.com/Weltburger
+  description: This is a sample server post and comment server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: NIX task5 API
+  version: "1.0"
+paths:
+  /create/comment:
+    post:
+      consumes:
+      - application/json
+      description: create a comment by sending valid JSON body
+      operationId: create-comment
+      parameters:
+      - description: Comment
+        in: body
+        name: comment
+        required: true
+        schema:
+          $ref: '#/definitions/models.Comment'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Comment'
+      summary: Create comment
+      tags:
+      - comments
+  /create/post:
+    post:
+      consumes:
+      - application/json
+      description: create a post by sending valid JSON body
+      operationId: create-post
+      parameters:
+      - description: Post
+        in: body
+        name: comment
+        required: true
+        schema:
+          $ref: '#/definitions/models.Post'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Post'
+      summary: Create post
+      tags:
+      - posts
+  /delete/comment/{id}:
+    delete:
+      description: delete comment by id
+      operationId: delete-comment
+      parameters:
+      - description: Comment ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: plain
+      summary: Delete comment
+      tags:
+      - comments
+  /delete/post/{id}:
+    delete:
+      description: delete post by id
+      operationId: delete-post
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: plain
+      summary: Delete post
+      tags:
+      - posts
+  /get/comment/{id}:
+    get:
+      description: get a comment by id
+      operationId: get-comment
+      parameters:
+      - description: Comment ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Comment'
+      summary: Get comment
+      tags:
+      - comments
+  /get/post/{id}:
+    get:
+      description: get a post by id
+      operationId: get-post
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Post'
+      summary: Get post
+      tags:
+      - posts
+  /update/comment/{id}:
+    put:
+      consumes:
+      - application/json
+      description: update comment by sending valid JSON body
+      operationId: update-comment
+      parameters:
+      - description: Comment ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Comment
+        in: body
+        name: comment
+        required: true
+        schema:
+          $ref: '#/definitions/models.Comment'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Comment'
+      summary: Update comment
+      tags:
+      - comments
+  /update/post/{id}:
+    put:
+      consumes:
+      - application/json
+      description: update post by sending valid JSON body
+      operationId: update-post
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Post
+        in: body
+        name: comment
+        required: true
+        schema:
+          $ref: '#/definitions/models.Post'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Post'
+      summary: Update post
+      tags:
+      - posts
+swagger: "2.0"
